@@ -4,3 +4,13 @@ spring:
 
 server:
  port: 8080
+ 
+resilience4j:
+ cricuitbraker:
+  instances:
+   paymentService:
+    registerHealthIndicator: true
+    slidingWindowSize: 10
+    failureRateThreasold: 50
+    waitDurationInOpenState: 10s
+    permittedNumberOfCallsInHalfOpenState: 3
